@@ -1,0 +1,85 @@
+@import "./vars.scss";
+@import "./Home.scss";
+@import "./ProductList.scss";
+@import "./Navbar.scss";
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap");
+html {
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  font-family: "Archivo";
+}
+body {
+  position: relative;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 40px 68px 60px 82px;
+  @media screen and (max-width: 620px) {
+    padding: 0;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2 {
+  color: black;
+}
+
+h3,
+p {
+  color: $text-color;
+}
+button {
+  background: none;
+  cursor: pointer;
+  border: none;
+  font-size: 23px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+input[type="radio"] {
+  -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+  -moz-appearance: checkbox; /* Firefox */
+  -ms-appearance: checkbox; /* not currently supported */
+}
+.primary-button {
+  background-color: black;
+  color: white;
+}
+.secondary-button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  background-color: black;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $zOverlay;
+  transition: all $reveal-duration ease-in-out;
+}
+.overlay-reveal {
+  opacity: 0.2;
+  visibility: visible;
+}
