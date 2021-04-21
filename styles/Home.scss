@@ -1,4 +1,9 @@
-.container {
+#homepage {
   min-height: 100vh;
   color: $text-color;
+  margin-top: $height-navbar;
+  padding: 2px 0;
+  @media screen and(max-width: 620px) {
+    margin-top: $m-height-navbar;
+  }
 }

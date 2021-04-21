@@ -6,8 +6,13 @@ import Pagination from "./Pagination";
 
 export default function ProductList({ products }) {
   const { cart, setCart } = useAppContext();
+
+  //STATES FOR FILTER AND SORT
+
   //list is the state we use to filter, sort, and paginate the products
   const [list, setList] = useState({ products: products, ascending: true });
+
+  //STATES FOR PAGINATION
 
   //current page is used to define current posts
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,7 +79,7 @@ export default function ProductList({ products }) {
   }
 
   return (
-    <section className="product-list">
+    <section id="product-list">
       <GalleryHeader list={list} setList={setList} />
       <FilterOptions
         filterState={{ filters, setFilters }}

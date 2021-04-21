@@ -3,16 +3,22 @@
   top: 0;
   left: 0;
   width: 100%;
+  padding: 40px 68px 0 82px;
   z-index: $zCart;
   background-color: white;
+  @media screen and (max-width: 620px) {
+    padding: 0;
+  }
   .navbar-container {
+    position: relative;
     width: 100%;
-    padding: 40px 68px 40px 82px;
-    min-height: $height-navbar;
+    height: $height-navbar;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid $border-color;
     @media screen and (max-width: 620px) {
-      padding: 30px;
+      padding: 30px 33px;
+      height: $m-height-navbar;
     }
     .cart-icon-container {
       position: relative;
@@ -55,6 +61,7 @@
       transition: all $reveal-duration ease-in-out;
       @media screen and (max-width: 620px) {
         width: 300px;
+        top: $m-height-navbar;
       }
       .item-container {
         display: flex;
@@ -68,6 +75,7 @@
           min-height: 18px;
           display: flex;
           align-items: center;
+          padding-bottom: 25px;
           @media screen and (max-width: 620px) {
             min-width: 15px;
             min-height: 15px;
@@ -102,12 +110,16 @@
           }
         }
       }
-      .secondary-button {
-        height: 55px;
+      .button-container {
         margin-top: auto;
-        @media screen and (max-width: 620px) {
-          height: 35px;
-          font-size: 18px;
+        padding-top: 24px;
+        .secondary-button {
+          height: 55px;
+          width: 100%;
+          @media screen and (max-width: 620px) {
+            height: 35px;
+            font-size: 18px;
+          }
         }
       }
     }

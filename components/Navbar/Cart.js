@@ -36,9 +36,11 @@ export default function Cart() {
           </li>
         ))}
       </ul>
-      <button className="secondary-button" onClick={handleClear}>
-        Clear
-      </button>
+      <div className="button-container">
+        <button className="secondary-button" onClick={handleClear}>
+          Clear
+        </button>
+      </div>
     </>
   );
 }

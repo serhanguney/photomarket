@@ -1,11 +1,13 @@
 import React, { memo } from "react";
 
 function Pagination({ totalPosts, postsPerPage, setCurrentPage, currentPage }) {
+  //create an array of total page numbers based on totalposts
   const pageNumbers = [];
   for (let i = 1; i <= Math.max(1, Math.ceil(totalPosts / postsPerPage)); i++) {
     pageNumbers.push(i);
   }
 
+  //switch current page within its limitations
   function paginate(page) {
     if (!page.number) {
       setCurrentPage((prev) =>

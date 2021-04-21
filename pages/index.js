@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Featured from "../components/Featured";
 import ProductList from "../components/ProductList/ProductList";
 import { server } from "../config/index";
 
@@ -15,12 +16,13 @@ export const getStaticProps = async () => {
 
 export default function Home({ products }) {
   return (
-    <div className="container">
+    <div id="homepage">
       <Head>
         <title>Bejamas Recruitment</title>
         <meta name="description" content="A premium photography marketplace" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Featured products={products} />
       <ProductList products={products} />
     </div>
   );

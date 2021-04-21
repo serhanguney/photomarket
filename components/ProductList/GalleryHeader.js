@@ -3,7 +3,9 @@ import { useAppContext } from "../Context";
 
 function GalleryHeader({ list, setList }) {
   const { cart, setCart } = useAppContext();
-  // console.log("header");
+
+  //handle the sorting based on selection
+  //toggle sort order
   const handleSort = (e) => {
     if (e) {
       //if e is defined sort based on property
@@ -19,7 +21,7 @@ function GalleryHeader({ list, setList }) {
             .slice();
       setList({ ...list, products: newList });
     } else {
-      //if not reverse the order of sort
+      //if not toggle the order of sort
       const newList = list.products.reverse().slice();
       setList({ products: newList, ascending: !list.ascending });
     }
@@ -37,10 +39,7 @@ function GalleryHeader({ list, setList }) {
         </button>
         <p>Sort by</p>
         <div className="dropdown">
-          <select onChange={(e) => handleSort(e)}>
-            <option selected disabled>
-              Select
-            </option>
+          <select onChange={(e) => handleSort(e)} defaultValue="Select">
             <option>Price</option>
             <option>Name</option>
           </select>
