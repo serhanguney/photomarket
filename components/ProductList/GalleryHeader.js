@@ -40,9 +40,7 @@ function GalleryHeader({ list, setList }) {
           id="sort-button"
           className={list.sortBy === "" ? "button-inactive" : ""}
           onClick={() => handleSort()}
-        >
-          {/* <img src="/sort.svg" /> */}
-        </button>
+        ></button>
         <p>Sort by</p>
         <div className="dropdown">
           <select onChange={(e) => handleSort(e)}>
