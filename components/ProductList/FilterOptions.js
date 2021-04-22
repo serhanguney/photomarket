@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from "react";
+
 import { useAppContext } from "../Context";
 
 export default function FilterOptions({ filterState, products }) {
+  //filters state is defined in the parent component because it is used to adjust "list" state
+  //this component is for the interactions made in the filter section only.
+  //list state is then used to render filtered posts which are IN THE PARENT
   const { filters, setFilters } = filterState;
   const {
     cart: { seeFilter },
@@ -12,22 +16,26 @@ export default function FilterOptions({ filterState, products }) {
   let refCategories = useRef(null);
   let refPrices = useRef(null);
   //define options to choose for filtering
+  //an array for max min limitations of price filters
   const priceOptions = [
     { value: [0, 20], text: "Lower than $20" },
     { value: [20, 100], text: "$20 - $100" },
     { value: [100, 200], text: "$100 - $200" },
     { value: [200, Infinity], text: "More than $200" },
   ];
+
+  //an array of unique values of available categories. (remove duplicates here)
   let categoryOptions = products.map((item) => item.category);
   categoryOptions = [...new Set(categoryOptions)];
 
   function handleCategory(e) {
     const value = e.target.value;
-    console.log(e.target.checked);
+    //if chosen category value is in our filter array then remove it
     if (filters.category.includes(value)) {
       const array = filters.category.filter((item) => item !== value);
       setFilters({ ...filters, category: array });
     } else {
+      //if not, add it
       setFilters({
         ...filters,
         category: [...filters.category, value],
@@ -36,25 +44,25 @@ export default function FilterOptions({ filterState, products }) {
   }
 
   function handlePrice(e) {
-    //checkboxes that will behave as radio buttons
+    //checkboxes will behave as radio buttons as required. For this we fetch dom elements
 
-    //get all the inputs
+    //get all the input tags (checkboxes)
     const array = Array.from(refPrices.children);
     const newArray = array
       .map((item) => item.children[0])
       .map((item) => item.children[0]);
-    //prevent multiple checking
+
+    //you can only select one checkbox at a time
     newArray.forEach((input) => {
-      // console.log(input.checked);
       if (input.value !== e.target.value) {
         input.checked = false;
       }
     });
-    //apply filtering
+    //apply price filtering
     const value = +e.target.value;
     const min = priceOptions[value].value[0];
     const max = priceOptions[value].value[1];
-    //check if all clear
+    //check if no price filter is selected
     if (e.target.checked) {
       setFilters({ ...filters, minPrice: min, maxPrice: max });
     } else {
@@ -62,7 +70,7 @@ export default function FilterOptions({ filterState, products }) {
     }
   }
 
-  //for mobile use
+  //for mobile use there are additional features "clear" and "save"
   function handleFilterAction(e) {
     if (e.target.name === "clear") {
       setFilters({
@@ -75,24 +83,25 @@ export default function FilterOptions({ filterState, products }) {
     }
   }
 
-  //make sure that checkboxes are consistent with filters
+  //make sure that checkboxes behave consistently with filter selections
   useEffect(() => {
     const { category } = filters;
     const array = Array.from(refCategories.children);
     const newArray = array
       .map((item) => item.children[0])
       .map((item) => item.children[0]);
+    //On page refresh, and any other case, if array is empty make sure everything is unselected
     if (category.length === 0) {
       newArray.forEach((child) => (child.checked = false));
     }
-    //clear price filters when necessary
-    if (filters.minPrice === 0 && filters.maxPrice === Infinity) {
-      const priceArray = Array.from(refPrices.children);
-      const newPriceArray = priceArray
-        .map((item) => item.children[0])
-        .map((item) => item.children[0]);
-      newPriceArray.forEach((input) => (input.checked = false));
-    }
+    //Unselect all price filters when necessary
+    // if (filters.minPrice === 0 && filters.maxPrice === Infinity) {
+    //   const priceArray = Array.from(refPrices.children);
+    //   const newPriceArray = priceArray
+    //     .map((item) => item.children[0])
+    //     .map((item) => item.children[0]);
+    //   newPriceArray.forEach((input) => (input.checked = false));
+    // }
   }, [filters]);
   return (
     <>

@@ -35,7 +35,19 @@
     @media screen and (max-width: 620px) {
       display: none;
     }
+    #sort-button {
+      background: url("/sort.svg") no-repeat center;
+      background-size: contain;
+      width: 15px;
+      height: 15px;
+    }
+    .button-inactive {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.3;
+    }
     p {
+      font-size: 22px;
       margin: 0 10px;
     }
     .dropdown {
@@ -49,6 +61,7 @@
       &:after {
         content: "";
         display: inline-block;
+        margin-left: 10px;
         width: 15px;
         height: 15px;
         color: black;

@@ -4,12 +4,12 @@ import { useAppContext } from "./Context";
 export default function Featured({ products }) {
   const { cart, setCart } = useAppContext();
   const featured = products.filter((item) => item.featured === true)[0];
-  console.log(featured.image);
   function addToCart() {
     setCart({
       ...cart,
       cartItems: [...cart.cartItems, featured],
       seeCart: true,
+      fromMenu: false,
     });
   }
   return (

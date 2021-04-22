@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Cart from "./Cart";
 import { useAppContext } from "../Context";
 
 export default function Navbar() {
-  let refCart = useRef(null);
   const {
     cart,
     cart: { seeCart, fromMenu, cartItems },
@@ -18,21 +17,6 @@ export default function Navbar() {
     }, 1000);
   }
 
-  // function handleBlur(e) {
-  //   // console.log("trigger", cart);
-  //   //careful here; this function will be triggered at every click which means cart could be set at every click!
-  //   console.log("contains? / seecart", [
-  //     refCart.current.contains(e.target),
-  //     seeCart,
-  //   ]);
-  //   if (refCart.current && !refCart.current.contains(e.target) && seeCart) {
-  //     // console.log("eventlistener" , cart);
-  //     setCart((prev) => {
-  //       console.log(prev);
-  //       return { ...prev, seeCart: false };
-  //     });
-  //   }
-  // }
   useEffect(() => {
     //hide cart list after some time.
     if (seeCart && !fromMenu) {
@@ -40,13 +24,6 @@ export default function Navbar() {
     }
   }, [cart]);
 
-  // useEffect(() => {
-  //eventlistener to handle the closing of menu on blur
-  // document.addEventListener("click", (e) => handleBlur(e));
-  // return () => {
-  //   document.removeEventListener("click", (e) => handleBlur(e));
-  // };
-  // }, []);
   return (
     <nav id="navbar">
       <div className="navbar-container">
@@ -62,7 +39,7 @@ export default function Navbar() {
             <div className="cart-counter">{cartItems.length}</div>
           ) : null}
         </div>
-        <div className={`cart ${seeCart ? "reveal" : ""}`} ref={refCart}>
+        <div id="cart" className={`cart ${seeCart ? "reveal" : ""}`}>
           <Cart />
         </div>
       </div>

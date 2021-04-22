@@ -1,10 +1,11 @@
 @import "./vars.scss";
 @import "./Home.scss";
-@import "./ProductList.scss";
+@import "./ProductList/ProductList.scss";
+@import "./ProductList/Pagination.scss";
 @import "./Featured.scss";
-@import "./Navbar.scss";
-@import "./GalleryHeader.scss";
-@import "./FilterOptions.scss";
+@import "./Navbar/Navbar.scss";
+@import "./ProductList/GalleryHeader.scss";
+@import "./ProductList/FilterOptions.scss";
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap");
 html {
   overflow-x: hidden;

@@ -10,7 +10,11 @@ export default function ProductList({ products }) {
   //STATES FOR FILTER AND SORT
 
   //list is the state we use to filter, sort, and paginate the products
-  const [list, setList] = useState({ products: products, ascending: true });
+  const [list, setList] = useState({
+    products: products,
+    ascending: true,
+    sortBy: "",
+  });
 
   //STATES FOR PAGINATION
 
@@ -93,7 +97,11 @@ export default function ProductList({ products }) {
                 {product.bestseller ? (
                   <div className="best-seller">Best Seller</div>
                 ) : null}
-                <img className="card-image" src={product.image.src} />
+                <img
+                  className="card-image"
+                  src={product.image.src}
+                  srcSet={`${product.image.src} 1200w,${product.image.src}?w=200 200w,${product.image.src}?w=400 400w,${product.image.src}?w=800 800w,${product.image.src}?w=1024 1024w`}
+                />
                 <button
                   className="primary-button"
                   onClick={(e) => addToCart(e, product)}

@@ -19,11 +19,13 @@ function GalleryHeader({ list, setList }) {
             .sort((a, b) => (a[property] < b[property] ? -1 : 1))
             .reverse()
             .slice();
-      setList({ ...list, products: newList });
+      setList({ ...list, products: newList, sortBy: e.target.value });
     } else {
       //if not toggle the order of sort
-      const newList = list.products.reverse().slice();
-      setList({ products: newList, ascending: !list.ascending });
+      if (list.sortBy !== "") {
+        const newList = list.products.reverse().slice();
+        setList({ products: newList, ascending: !list.ascending });
+      }
     }
   };
 
@@ -34,12 +36,19 @@ function GalleryHeader({ list, setList }) {
         <p>&nbsp;&nbsp;Premium Photos</p>
       </div>
       <div className="gallery-sort">
-        <button onClick={() => handleSort()}>
-          <img src="/sort.svg" />
+        <button
+          id="sort-button"
+          className={list.sortBy === "" ? "button-inactive" : ""}
+          onClick={() => handleSort()}
+        >
+          {/* <img src="/sort.svg" /> */}
         </button>
         <p>Sort by</p>
         <div className="dropdown">
-          <select onChange={(e) => handleSort(e)} defaultValue="Select">
+          <select onChange={(e) => handleSort(e)}>
+            <option disabled selected>
+              Select
+            </option>
             <option>Price</option>
             <option>Name</option>
           </select>
