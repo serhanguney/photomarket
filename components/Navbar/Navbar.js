@@ -27,9 +27,6 @@ export default function Navbar() {
   return (
     <nav id="navbar">
       <div className="navbar-container">
-        <div className="logo-container">
-          <Image src="/logo.svg" width={159} height={25} />
-        </div>
         <div
           className="cart-icon-container"
           onClick={() => setCart({ ...cart, seeCart: true, fromMenu: true })}
